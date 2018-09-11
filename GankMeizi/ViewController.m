@@ -12,7 +12,6 @@
 #import <MJRefresh/MJRefresh.h>
 #import "GankMeizi.h"
 #import "MeiziCell.h"
-#import "DYTWaterflowLayout.h"
 #import <SDWebImage/SDWebImageManager.h>
 
 @interface ViewController ()<UICollectionViewDelegateFlowLayout>
@@ -20,12 +19,6 @@
 @property (nonatomic, strong) NSMutableArray *meiziArray;
 @property (nonatomic, assign) NSInteger page;
 
-@property (nonatomic, strong) DYTWaterflowLayout *waterflowLayout;
-@property (nonatomic, assign) DirectionType type;
-
-@property (nonatomic, strong) NSMutableArray *widths;
-@property (nonatomic, strong) NSMutableArray *heights;
-@property (nonatomic, strong) NSMutableArray *picImageArr;
 
 
 @end
@@ -154,30 +147,6 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         collectionView.mj_footer = footer;
     }
     return collectionView;
-}
-
-- (NSMutableArray *)picImageArr {
-    
-    if (!_picImageArr) {
-        _picImageArr = [[NSMutableArray alloc] init];
-    }
-    return _picImageArr;
-}
-
-- (NSMutableArray *)heights {
-    
-    if (!_heights) {
-        _heights = [[NSMutableArray alloc] init];
-    }
-    return _heights;
-}
-
-- (NSMutableArray *)widths {
-    
-    if (!_widths) {
-        _widths = [[NSMutableArray alloc] init];
-    }
-    return _widths;
 }
 
 
