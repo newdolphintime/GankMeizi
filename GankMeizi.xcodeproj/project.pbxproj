@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		72C3BD76214693470027B949 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD75214693470027B949 /* AppDelegate.m */; };
+		72C3BD79214693470027B949 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD78214693470027B949 /* ViewController.m */; };
+		72C3BD7C214693470027B949 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C3BD7A214693470027B949 /* Main.storyboard */; };
+		72C3BD7E214693490027B949 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72C3BD7D214693490027B949 /* Assets.xcassets */; };
+		72C3BD81214693490027B949 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72C3BD7F214693490027B949 /* LaunchScreen.storyboard */; };
+		72C3BD84214693490027B949 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD83214693490027B949 /* main.m */; };
+		72C3BD8F214694660027B949 /* GankMeizi.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD8C214694660027B949 /* GankMeizi.m */; };
+		72C3BD90214694660027B949 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD8E214694660027B949 /* Result.m */; };
+		72C3BD952146A1E90027B949 /* MeiziCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD942146A1E90027B949 /* MeiziCell.m */; };
+		72C3BD992147FD700027B949 /* DYTWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD982147FD700027B949 /* DYTWaterflowLayout.m */; };
+		73D8D5A47B0956E78D313359 /* libPods-GankMeizi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79ECC84D27D1AFE88E8C4F48 /* libPods-GankMeizi.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		439316DBD5B0EB7913363F49 /* Pods-GankMeizi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GankMeizi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi.debug.xcconfig"; sourceTree = "<group>"; };
+		72C3BD71214693470027B949 /* GankMeizi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GankMeizi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72C3BD74214693470027B949 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		72C3BD75214693470027B949 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		72C3BD77214693470027B949 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		72C3BD78214693470027B949 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		72C3BD7B214693470027B949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		72C3BD7D214693490027B949 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		72C3BD80214693490027B949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		72C3BD82214693490027B949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72C3BD83214693490027B949 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		72C3BD8B214694660027B949 /* GankMeizi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GankMeizi.h; sourceTree = "<group>"; };
+		72C3BD8C214694660027B949 /* GankMeizi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GankMeizi.m; sourceTree = "<group>"; };
+		72C3BD8D214694660027B949 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
+		72C3BD8E214694660027B949 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
+		72C3BD932146A1E90027B949 /* MeiziCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeiziCell.h; sourceTree = "<group>"; };
+		72C3BD942146A1E90027B949 /* MeiziCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeiziCell.m; sourceTree = "<group>"; };
+		72C3BD972147FD700027B949 /* DYTWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYTWaterflowLayout.h; sourceTree = "<group>"; };
+		72C3BD982147FD700027B949 /* DYTWaterflowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYTWaterflowLayout.m; sourceTree = "<group>"; };
+		72C3BD9A2147FD940027B949 /* Help.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
+		79ECC84D27D1AFE88E8C4F48 /* libPods-GankMeizi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GankMeizi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E97EA479627C898B0EF67A15 /* Pods-GankMeizi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GankMeizi.release.xcconfig"; path = "Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72C3BD6E214693470027B949 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73D8D5A47B0956E78D313359 /* libPods-GankMeizi.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5451C4EA2C166C2CA36B7AD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				439316DBD5B0EB7913363F49 /* Pods-GankMeizi.debug.xcconfig */,
+				E97EA479627C898B0EF67A15 /* Pods-GankMeizi.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		68CE72D812C221C0D2F53E69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79ECC84D27D1AFE88E8C4F48 /* libPods-GankMeizi.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		72C3BD68214693470027B949 = {
+			isa = PBXGroup;
+			children = (
+				72C3BD73214693470027B949 /* GankMeizi */,
+				72C3BD72214693470027B949 /* Products */,
+				5451C4EA2C166C2CA36B7AD8 /* Pods */,
+				68CE72D812C221C0D2F53E69 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		72C3BD72214693470027B949 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72C3BD71214693470027B949 /* GankMeizi.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72C3BD73214693470027B949 /* GankMeizi */ = {
+			isa = PBXGroup;
+			children = (
+				72C3BD962147FD580027B949 /* WaterFlowLayout */,
+				72C3BD922146A1BA0027B949 /* View */,
+				72C3BD8A214694500027B949 /* GankMeizi */,
+				72C3BD74214693470027B949 /* AppDelegate.h */,
+				72C3BD75214693470027B949 /* AppDelegate.m */,
+				72C3BD77214693470027B949 /* ViewController.h */,
+				72C3BD78214693470027B949 /* ViewController.m */,
+				72C3BD7A214693470027B949 /* Main.storyboard */,
+				72C3BD7D214693490027B949 /* Assets.xcassets */,
+				72C3BD7F214693490027B949 /* LaunchScreen.storyboard */,
+				72C3BD82214693490027B949 /* Info.plist */,
+				72C3BD83214693490027B949 /* main.m */,
+			);
+			path = GankMeizi;
+			sourceTree = "<group>";
+		};
+		72C3BD8A214694500027B949 /* GankMeizi */ = {
+			isa = PBXGroup;
+			children = (
+				72C3BD8B214694660027B949 /* GankMeizi.h */,
+				72C3BD8C214694660027B949 /* GankMeizi.m */,
+				72C3BD8D214694660027B949 /* Result.h */,
+				72C3BD8E214694660027B949 /* Result.m */,
+			);
+			path = GankMeizi;
+			sourceTree = "<group>";
+		};
+		72C3BD922146A1BA0027B949 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				72C3BD932146A1E90027B949 /* MeiziCell.h */,
+				72C3BD942146A1E90027B949 /* MeiziCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		72C3BD962147FD580027B949 /* WaterFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				72C3BD9A2147FD940027B949 /* Help.h */,
+				72C3BD972147FD700027B949 /* DYTWaterflowLayout.h */,
+				72C3BD982147FD700027B949 /* DYTWaterflowLayout.m */,
+			);
+			path = WaterFlowLayout;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		72C3BD70214693470027B949 /* GankMeizi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72C3BD87214693490027B949 /* Build configuration list for PBXNativeTarget "GankMeizi" */;
+			buildPhases = (
+				FE4166AB65A62E4B249E4256 /* [CP] Check Pods Manifest.lock */,
+				72C3BD6D214693470027B949 /* Sources */,
+				72C3BD6E214693470027B949 /* Frameworks */,
+				72C3BD6F214693470027B949 /* Resources */,
+				39E6F6C0B78504E8CA9302BD /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GankMeizi;
+			productName = GankMeizi;
+			productReference = 72C3BD71214693470027B949 /* GankMeizi.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		72C3BD69214693470027B949 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "张威";
+				TargetAttributes = {
+					72C3BD70214693470027B949 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 72C3BD6C214693470027B949 /* Build configuration list for PBXProject "GankMeizi" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 72C3BD68214693470027B949;
+			productRefGroup = 72C3BD72214693470027B949 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				72C3BD70214693470027B949 /* GankMeizi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		72C3BD6F214693470027B949 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72C3BD81214693490027B949 /* LaunchScreen.storyboard in Resources */,
+				72C3BD7E214693490027B949 /* Assets.xcassets in Resources */,
+				72C3BD7C214693470027B949 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		39E6F6C0B78504E8CA9302BD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE4166AB65A62E4B249E4256 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GankMeizi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		72C3BD6D214693470027B949 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72C3BD79214693470027B949 /* ViewController.m in Sources */,
+				72C3BD8F214694660027B949 /* GankMeizi.m in Sources */,
+				72C3BD992147FD700027B949 /* DYTWaterflowLayout.m in Sources */,
+				72C3BD90214694660027B949 /* Result.m in Sources */,
+				72C3BD84214693490027B949 /* main.m in Sources */,
+				72C3BD952146A1E90027B949 /* MeiziCell.m in Sources */,
+				72C3BD76214693470027B949 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		72C3BD7A214693470027B949 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72C3BD7B214693470027B949 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		72C3BD7F214693490027B949 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72C3BD80214693490027B949 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		72C3BD85214693490027B949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		72C3BD86214693490027B949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		72C3BD88214693490027B949 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 439316DBD5B0EB7913363F49 /* Pods-GankMeizi.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4YYFA5L7XH;
+				INFOPLIST_FILE = GankMeizi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zv.play.appone.GankMeizi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		72C3BD89214693490027B949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E97EA479627C898B0EF67A15 /* Pods-GankMeizi.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4YYFA5L7XH;
+				INFOPLIST_FILE = GankMeizi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zv.play.appone.GankMeizi;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		72C3BD6C214693470027B949 /* Build configuration list for PBXProject "GankMeizi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72C3BD85214693490027B949 /* Debug */,
+				72C3BD86214693490027B949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72C3BD87214693490027B949 /* Build configuration list for PBXNativeTarget "GankMeizi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72C3BD88214693490027B949 /* Debug */,
+				72C3BD89214693490027B949 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 72C3BD69214693470027B949 /* Project object */;
+}
