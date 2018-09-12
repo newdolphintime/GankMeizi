@@ -89,7 +89,7 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
         if (page == 1) {
             [self.meiziArray removeAllObjects];
         }
-        self.page++;
+        
         [self.meiziArray addObjectsFromArray:gank.results];//= [NSMutableArray arrayWithArray:gank.results];
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
@@ -121,7 +121,8 @@ static NSString * const reuseIdentifier = @"CollectionViewCell";
 }
 #pragma mark 加载更多调用的方法
 -(void)loadMoreMeizi{
-    [self getMeiziArray:self.page+1];
+    self.page++;
+    [self getMeiziArray:self.page];
     
 }
 #pragma mark 懒加载
