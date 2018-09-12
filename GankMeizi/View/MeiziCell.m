@@ -8,7 +8,7 @@
 
 #import "MeiziCell.h"
 #import "Result.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+
 
 
 @interface MeiziCell()

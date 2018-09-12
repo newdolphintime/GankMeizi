@@ -7,12 +7,9 @@
 //
 //呵呵又改回来了
 #import "ViewController.h"
-#import <AFNetworking.h>
-#import <MJExtension.h>
-#import <MJRefresh/MJRefresh.h>
 #import "GankMeizi.h"
 #import "MeiziCell.h"
-#import <SDWebImage/SDWebImageManager.h>
+
 
 @interface ViewController ()<UICollectionViewDelegateFlowLayout>
 
@@ -25,7 +22,6 @@
 
 @implementation ViewController
 
-static NSString * const reuseIdentifier = @"CollectionViewCell";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {

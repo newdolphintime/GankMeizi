@@ -16,7 +16,6 @@
 		72C3BD8F214694660027B949 /* GankMeizi.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD8C214694660027B949 /* GankMeizi.m */; };
 		72C3BD90214694660027B949 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD8E214694660027B949 /* Result.m */; };
 		72C3BD952146A1E90027B949 /* MeiziCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD942146A1E90027B949 /* MeiziCell.m */; };
-		72C3BD992147FD700027B949 /* DYTWaterflowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD982147FD700027B949 /* DYTWaterflowLayout.m */; };
 		73D8D5A47B0956E78D313359 /* libPods-GankMeizi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79ECC84D27D1AFE88E8C4F48 /* libPods-GankMeizi.a */; };
 /* End PBXBuildFile section */
 
@@ -38,9 +37,7 @@
 		72C3BD8E214694660027B949 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
 		72C3BD932146A1E90027B949 /* MeiziCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeiziCell.h; sourceTree = "<group>"; };
 		72C3BD942146A1E90027B949 /* MeiziCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeiziCell.m; sourceTree = "<group>"; };
-		72C3BD972147FD700027B949 /* DYTWaterflowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYTWaterflowLayout.h; sourceTree = "<group>"; };
-		72C3BD982147FD700027B949 /* DYTWaterflowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYTWaterflowLayout.m; sourceTree = "<group>"; };
-		72C3BD9A2147FD940027B949 /* Help.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
+		72C3BDA72148FD3A0027B949 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		79ECC84D27D1AFE88E8C4F48 /* libPods-GankMeizi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GankMeizi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97EA479627C898B0EF67A15 /* Pods-GankMeizi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GankMeizi.release.xcconfig"; path = "Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,7 +92,6 @@
 		72C3BD73214693470027B949 /* GankMeizi */ = {
 			isa = PBXGroup;
 			children = (
-				72C3BD962147FD580027B949 /* WaterFlowLayout */,
 				72C3BD922146A1BA0027B949 /* View */,
 				72C3BD8A214694500027B949 /* GankMeizi */,
 				72C3BD74214693470027B949 /* AppDelegate.h */,
@@ -107,6 +103,7 @@
 				72C3BD7F214693490027B949 /* LaunchScreen.storyboard */,
 				72C3BD82214693490027B949 /* Info.plist */,
 				72C3BD83214693490027B949 /* main.m */,
+				72C3BDA72148FD3A0027B949 /* PrefixHeader.pch */,
 			);
 			path = GankMeizi;
 			sourceTree = "<group>";
@@ -129,16 +126,6 @@
 				72C3BD942146A1E90027B949 /* MeiziCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		72C3BD962147FD580027B949 /* WaterFlowLayout */ = {
-			isa = PBXGroup;
-			children = (
-				72C3BD9A2147FD940027B949 /* Help.h */,
-				72C3BD972147FD700027B949 /* DYTWaterflowLayout.h */,
-				72C3BD982147FD700027B949 /* DYTWaterflowLayout.m */,
-			);
-			path = WaterFlowLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +243,6 @@
 			files = (
 				72C3BD79214693470027B949 /* ViewController.m in Sources */,
 				72C3BD8F214694660027B949 /* GankMeizi.m in Sources */,
-				72C3BD992147FD700027B949 /* DYTWaterflowLayout.m in Sources */,
 				72C3BD90214694660027B949 /* Result.m in Sources */,
 				72C3BD84214693490027B949 /* main.m in Sources */,
 				72C3BD952146A1E90027B949 /* MeiziCell.m in Sources */,
@@ -403,6 +389,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4YYFA5L7XH;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GankMeizi/PrefixHeader.pch";
 				INFOPLIST_FILE = GankMeizi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -422,6 +410,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4YYFA5L7XH;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GankMeizi/PrefixHeader.pch";
 				INFOPLIST_FILE = GankMeizi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
