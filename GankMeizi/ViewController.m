@@ -78,7 +78,7 @@ static NSString * const reuseIdentifier = @"MeiziCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     //NSLog(@"%ld",(long)indexPath.row);
     //NSLog(@"%@",((XRImage *)self.picImageArr[indexPath.row]));
-    MeiziCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeiziCell" forIndexPath:indexPath];
+    MeiziCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     //NSLog(@"%@",self.meiziArray[indexPath.row])  ;
     //[cell setMeizi:self.meiziArray[indexPath.row]];
     cell.imageView.image = ((XRImage *)self.picImageArr[indexPath.row]).image;
@@ -118,19 +118,20 @@ static NSString * const reuseIdentifier = @"MeiziCell";
                 //[SDWebImageManager sharedManager]ima
                 XRImage * xrimage = [[XRImage alloc]init];
                 
-                xrimage.imageUrl = [NSURL URLWithString:((Result *)self.meiziArray[i]).url];
+                if ([((Result *)self.meiziArray[i]).url containsString:@"jpg"]||[((Result *)self.meiziArray[i]).url containsString:@"jpeg"]) {
+                    xrimage.imageUrl = [NSURL URLWithString:((Result *)self.meiziArray[i]).url];
+                } else {
+                    xrimage.imageUrl = [NSURL URLWithString:@"http://wx4.sinaimg.cn/bmiddle/d8203382ly1fslhcbkj1jj21281w0dwq.jpg"];
+                }
+                
+                
                 //[[SDWebImageManager sharedManager].imageDownloader setValue: nil forHTTPHeaderField:@"Accept"];
                 [[SDWebImageManager sharedManager] loadImageWithURL:xrimage.imageUrl options:SDWebImageAllowInvalidSSLCertificates progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
                     
                 } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     NSLog(@"errrrrror%@",error);
-                    if(error){
-                        
-                        xrimage.imageW = image.size.width;
-                        xrimage.imageH = image.size.height;
-                        xrimage.imageUrl = [NSURL URLWithString:@"http://cc.cocimg.com/api/uploads/20160527/1464336500932909.jpg"];
-                        [self.picImageArr addObject:xrimage];
-                    }
+                    
+                    
                     if(image){
                         
                         xrimage.imageW = image.size.width;
@@ -150,6 +151,8 @@ static NSString * const reuseIdentifier = @"MeiziCell";
                         return ;
                     }
                 }];
+                    
+                
             }
         }else {
             
@@ -181,6 +184,7 @@ static NSString * const reuseIdentifier = @"MeiziCell";
 -(void)loadMoreMeizi{
     self.page++;
     [self getMeiziArray:self.page];
+    NSLog(@"几页了%ld",(long)self.page);
     
 }
 #pragma mark 懒加载
@@ -221,6 +225,7 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     CGFloat ratio = ((XRImage *)self.picImageArr[indexPath.row]).imageW/((XRImage *)self.picImageArr[indexPath.row]).imageH;
     return ratio;
 }
+
 
 
 @end
