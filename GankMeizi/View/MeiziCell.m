@@ -13,13 +13,27 @@
 
 @interface MeiziCell()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageview;
+//@property (weak, nonatomic) IBOutlet UIImageView *imageview;
 
 @end
 
 @implementation MeiziCell
-- (void)setMeizi:(Result *)meizi {
-    NSURL *imageURL = [NSURL URLWithString:meizi.url];
-    [self.imageview sd_setImageWithURL:imageURL];
+//- (void)setMeizi:(Result *)meizi {
+//    NSURL *imageURL = [NSURL URLWithString:meizi.url];
+//    [self.imageview sd_setImageWithURL:imageURL];
+//}
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _imageView = [[UIImageView alloc] init];
+        _imageView.frame = self.bounds;
+        [self addSubview:_imageView];
+    }
+    return self;
+}
+- (void)setimageurl:(NSURL *)imageurl{
+    
+    [self.imageView sd_setImageWithURL:imageurl];
 }
 @end

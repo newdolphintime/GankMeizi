@@ -9,19 +9,23 @@
 #import "ViewController.h"
 #import "GankMeizi.h"
 #import "MeiziCell.h"
+#import "XHWaterfallFlowLayout.h"
+#import "XRImage.h"
 
 
-@interface ViewController ()<UICollectionViewDelegateFlowLayout>
+@interface ViewController ()<UICollectionViewDelegateFlowLayout,XHWaterfallFlowLayoutDelegate>
 
 @property (nonatomic, strong) NSMutableArray *meiziArray;
 @property (nonatomic, assign) NSInteger page;
 
+@property (nonatomic, strong) XHWaterfallFlowLayout * flowLayout;
+@property (nonatomic, strong) NSMutableArray *picImageArr;
 
 
 @end
 
 @implementation ViewController
-
+static NSString * const reuseIdentifier = @"MeiziCell";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -33,7 +37,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _flowLayout = [[XHWaterfallFlowLayout alloc] init];
+    _flowLayout.columnCount = 3;
+    _flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    _flowLayout.minimumInteritemSpacing = 5;
+    _flowLayout.minimumLineSpacing = 5;
+    _flowLayout.sDelegate = self;
+    
+    
+    [self.collectionView registerClass:[MeiziCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    // Do any additional setup after loading the view, typically from a nib.
     [self.collectionView.mj_header beginRefreshing];
+    [self.collectionView.mj_footer endRefreshing];
+    
+    
+    self.collectionView.collectionViewLayout = self.flowLayout ;
     
 
     
@@ -55,16 +73,19 @@
     return self.meiziArray.count;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat screeWidth = CGRectGetWidth([UIScreen mainScreen].bounds);
-    NSInteger perLine = ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait)?3:5;
-    return CGSizeMake(screeWidth/perLine-1, screeWidth/perLine-1);
-}
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    //NSLog(@"%ld",(long)indexPath.row);
+    //NSLog(@"%@",((XRImage *)self.picImageArr[indexPath.row]));
     MeiziCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MeiziCell" forIndexPath:indexPath];
-    [cell setMeizi:((Result *)self.meiziArray[indexPath.row])];
-    
+    //NSLog(@"%@",self.meiziArray[indexPath.row])  ;
+    //[cell setMeizi:self.meiziArray[indexPath.row]];
+    cell.imageView.image = ((XRImage *)self.picImageArr[indexPath.row]).image;
+    //[cell setimageurl:((XRImage *)self.picImageArr[indexPath.row]).imageUrl];
+    // 注：非常关键的一句，由于cell的复用，imageView的frame可能和cell对不上，需要重新设置。
+    cell.imageView.frame = cell.bounds;
+    cell.backgroundColor = [UIColor orangeColor];
     return cell;
    
 }
@@ -80,29 +101,70 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //NSLog(@"%@",responseObject);
         gank = [GankMeizi mj_objectWithKeyValues:responseObject];
-        if (gank.results.count ){
-        NSLog(@"%@",((Result*)gank.results[0]).url);
-        if (page == 1) {
-            [self.meiziArray removeAllObjects];
-        }
         
-        [self.meiziArray addObjectsFromArray:gank.results];//= [NSMutableArray arrayWithArray:gank.results];
-        [self.collectionView reloadData];
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView.mj_footer endRefreshing];
+        if (gank.results.count ){
+            //NSLog(@"%@",((Result*)gank.results[0]).url);
+            if (page == 1) {
+                [self.meiziArray removeAllObjects];
+                [self.picImageArr removeAllObjects];
+            }
+            
+            [self.meiziArray addObjectsFromArray:gank.results];//= [NSMutableArray arrayWithArray:gank.results];
+            
+            
+            for (int i = ((int)page*20)-20 ; i< self.meiziArray.count ; i++) {
+                
+                
+                //[SDWebImageManager sharedManager]ima
+                XRImage * xrimage = [[XRImage alloc]init];
+                
+                xrimage.imageUrl = [NSURL URLWithString:((Result *)self.meiziArray[i]).url];
+                //[[SDWebImageManager sharedManager].imageDownloader setValue: nil forHTTPHeaderField:@"Accept"];
+                [[SDWebImageManager sharedManager] loadImageWithURL:xrimage.imageUrl options:SDWebImageAllowInvalidSSLCertificates progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                    
+                } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                    NSLog(@"errrrrror%@",error);
+                    if(error){
+                        
+                        xrimage.imageW = image.size.width;
+                        xrimage.imageH = image.size.height;
+                        xrimage.imageUrl = [NSURL URLWithString:@"http://cc.cocimg.com/api/uploads/20160527/1464336500932909.jpg"];
+                        [self.picImageArr addObject:xrimage];
+                    }
+                    if(image){
+                        
+                        xrimage.imageW = image.size.width;
+                        xrimage.imageH = image.size.height;
+                        xrimage.image = image;
+                        //NSLog(@"%@",xrimage.imageUrl);
+                        
+                        [self.picImageArr addObject:xrimage];
+                        //NSLog(@"图片的数量%ld",self.picImageArr.count);
+                        //[self.collectionView reloadData];
+                    }
+                    if(self.picImageArr.count  == self.meiziArray.count){
+                        
+                        [self.collectionView reloadData];
+                        [self.collectionView.mj_header endRefreshing];
+                        [self.collectionView.mj_footer endRefreshing];
+                        return ;
+                    }
+                }];
+            }
         }else {
+            
             [self.collectionView.mj_header endRefreshing];
             [self.collectionView.mj_footer endRefreshingWithNoMoreData];
         }
-        
-            
         
         
         // 请求成功
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         // 请求失败
+        [self.collectionView.mj_header endRefreshing];
+        
     }];
-    NSLog(@"%@",gank);
+    //NSLog(@"%@",gank);
     
     
     
@@ -112,7 +174,7 @@
 #pragma mark 刷新调用的方法
 -(void)refreshMeizi{
     self.page = 1;
-    [self.meiziArray removeAllObjects];
+    
     [self getMeiziArray:self.page];
 }
 #pragma mark 加载更多调用的方法
@@ -145,7 +207,20 @@
     }
     return collectionView;
 }
+- (NSMutableArray *)picImageArr {
+    
+    if (!_picImageArr) {
+        _picImageArr = [[NSMutableArray alloc] init];
+    }
+    
+    return _picImageArr;
+}
 
+- (CGFloat)getImageRatioOfWidthAndHeight:(NSIndexPath *)indexPath
+{   //NSLog(@"%@",self.picImageArr[indexPath.row]);
+    CGFloat ratio = ((XRImage *)self.picImageArr[indexPath.row]).imageW/((XRImage *)self.picImageArr[indexPath.row]).imageH;
+    return ratio;
+}
 
 
 @end

@@ -24,7 +24,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MeiziCell" id="gMs-xt-fJX" customClass="MeiziCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MeiziCell" id="gMs-xt-fJX">
                                 <rect key="frame" x="0.0" y="0.0" width="87" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -42,9 +42,6 @@
                                     <constraint firstItem="CSn-dg-TZE" firstAttribute="leading" secondItem="gMs-xt-fJX" secondAttribute="leading" id="cWc-4s-72e"/>
                                     <constraint firstAttribute="trailing" secondItem="CSn-dg-TZE" secondAttribute="trailing" id="rcv-GP-c3W"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="imageview" destination="CSn-dg-TZE" id="6jB-rP-Bbo"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

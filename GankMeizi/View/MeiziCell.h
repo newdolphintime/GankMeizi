@@ -10,7 +10,8 @@
 @class Result;
 
 @interface MeiziCell : UICollectionViewCell
+@property (nonatomic, strong) UIImageView *imageView;
+-(void)setimageurl:(NSURL *)imageurl;
 
-
-- (void)setMeizi:(Result *)meizi;
+//- (void)setMeizi:(Result *)meizi;
 @end

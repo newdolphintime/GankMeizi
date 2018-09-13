@@ -16,6 +16,8 @@
 		72C3BD8F214694660027B949 /* GankMeizi.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD8C214694660027B949 /* GankMeizi.m */; };
 		72C3BD90214694660027B949 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD8E214694660027B949 /* Result.m */; };
 		72C3BD952146A1E90027B949 /* MeiziCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BD942146A1E90027B949 /* MeiziCell.m */; };
+		72C3BDB0214A010D0027B949 /* XHWaterfallFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BDAF214A010D0027B949 /* XHWaterfallFlowLayout.m */; };
+		72C3BDB3214A01E70027B949 /* XRImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3BDB2214A01E70027B949 /* XRImage.m */; };
 		73D8D5A47B0956E78D313359 /* libPods-GankMeizi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79ECC84D27D1AFE88E8C4F48 /* libPods-GankMeizi.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,10 @@
 		72C3BD932146A1E90027B949 /* MeiziCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeiziCell.h; sourceTree = "<group>"; };
 		72C3BD942146A1E90027B949 /* MeiziCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeiziCell.m; sourceTree = "<group>"; };
 		72C3BDA72148FD3A0027B949 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		72C3BDAE214A010D0027B949 /* XHWaterfallFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHWaterfallFlowLayout.h; sourceTree = "<group>"; };
+		72C3BDAF214A010D0027B949 /* XHWaterfallFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHWaterfallFlowLayout.m; sourceTree = "<group>"; };
+		72C3BDB1214A01E70027B949 /* XRImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRImage.h; sourceTree = "<group>"; };
+		72C3BDB2214A01E70027B949 /* XRImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRImage.m; sourceTree = "<group>"; };
 		79ECC84D27D1AFE88E8C4F48 /* libPods-GankMeizi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GankMeizi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97EA479627C898B0EF67A15 /* Pods-GankMeizi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GankMeizi.release.xcconfig"; path = "Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +98,7 @@
 		72C3BD73214693470027B949 /* GankMeizi */ = {
 			isa = PBXGroup;
 			children = (
+				72C3BDAD214A00DD0027B949 /* WaterFlowLayout */,
 				72C3BD922146A1BA0027B949 /* View */,
 				72C3BD8A214694500027B949 /* GankMeizi */,
 				72C3BD74214693470027B949 /* AppDelegate.h */,
@@ -122,10 +129,22 @@
 		72C3BD922146A1BA0027B949 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				72C3BDB1214A01E70027B949 /* XRImage.h */,
+				72C3BDB2214A01E70027B949 /* XRImage.m */,
 				72C3BD932146A1E90027B949 /* MeiziCell.h */,
 				72C3BD942146A1E90027B949 /* MeiziCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		72C3BDAD214A00DD0027B949 /* WaterFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				72C3BDAE214A010D0027B949 /* XHWaterfallFlowLayout.h */,
+				72C3BDAF214A010D0027B949 /* XHWaterfallFlowLayout.m */,
+			);
+			name = WaterFlowLayout;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,10 +261,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				72C3BD79214693470027B949 /* ViewController.m in Sources */,
+				72C3BDB3214A01E70027B949 /* XRImage.m in Sources */,
 				72C3BD8F214694660027B949 /* GankMeizi.m in Sources */,
 				72C3BD90214694660027B949 /* Result.m in Sources */,
 				72C3BD84214693490027B949 /* main.m in Sources */,
 				72C3BD952146A1E90027B949 /* MeiziCell.m in Sources */,
+				72C3BDB0214A010D0027B949 /* XHWaterfallFlowLayout.m in Sources */,
 				72C3BD76214693470027B949 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
