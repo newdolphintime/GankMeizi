@@ -13,7 +13,7 @@
 #import "XRImage.h"
 
 
-@interface ViewController ()<UICollectionViewDelegateFlowLayout,XHWaterfallFlowLayoutDelegate>
+@interface ViewController ()<UICollectionViewDelegateFlowLayout,XHWaterfallFlowLayoutDelegate,YBImageBrowserDataSource>
 
 @property (nonatomic, strong) NSMutableArray *meiziArray;
 @property (nonatomic, assign) NSInteger page;
@@ -25,6 +25,9 @@
 @end
 
 @implementation ViewController
+{
+    NSIndexPath *currentTouchIndexPath;
+}
 static NSString * const reuseIdentifier = @"MeiziCell";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -88,6 +91,13 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     cell.backgroundColor = [UIColor orangeColor];
     return cell;
    
+}
+
+// UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    currentTouchIndexPath = indexPath;
+    [self B_showWithTouchIndexPath:indexPath];
+    
 }
 
 -(void)getMeiziArray:(NSInteger) page{
@@ -226,6 +236,40 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     return ratio;
 }
 
+
+#pragma mark 方式二、使用代理配置数据源
+
+- (void)B_showWithTouchIndexPath:(NSIndexPath *)indexPath {
+    
+    //创建图片浏览器（注意：更多功能请看 YBImageBrowser.h 文件或者 github readme）
+    YBImageBrowser *browser = [YBImageBrowser new];
+    browser.dataSource = self;
+    browser.currentIndex = indexPath.row;
+    
+    //展示
+    [browser show];
+}
+
+//YBImageBrowserDataSource 代理实现赋值数据
+- (NSInteger)numberInYBImageBrowser:(YBImageBrowser *)imageBrowser {
+    return self.meiziArray.count;
+}
+- (YBImageBrowserModel *)yBImageBrowser:(YBImageBrowser *)imageBrowser modelForCellAtIndex:(NSInteger)index {
+    YBImageBrowserModel *model = [YBImageBrowserModel new];
+    model.url = ((XRImage *)self.picImageArr[index]).imageUrl;
+    model.sourceImageView = [self getImageViewOfCellByIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    return model;
+}
+- (UIImageView *)imageViewOfTouchForImageBrowser:(YBImageBrowser *)imageBrowser {
+    return [self getImageViewOfCellByIndexPath:currentTouchIndexPath];
+}
+
+// tool
+- (UIImageView *)getImageViewOfCellByIndexPath:(NSIndexPath *)indexPath {
+    MeiziCell *cell = (MeiziCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    if (!cell) return nil;
+    return cell.imageView;
+}
 
 
 @end
