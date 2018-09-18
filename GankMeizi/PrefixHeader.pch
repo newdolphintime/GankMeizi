@@ -17,6 +17,8 @@
 #import <MJRefresh/MJRefresh.h>
 #import <MJExtension/MJExtension.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <YBIBUtilities.h>
+#import <YBImageBrowserTipView.h>
 #import <YBImageBrowser.h>
 
 #endif /* PrefixHeader_pch */

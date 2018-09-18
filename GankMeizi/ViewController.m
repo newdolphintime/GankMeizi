@@ -13,7 +13,7 @@
 #import "XRImage.h"
 
 
-@interface ViewController ()<UICollectionViewDelegateFlowLayout,XHWaterfallFlowLayoutDelegate,YBImageBrowserDataSource>
+@interface ViewController ()<UICollectionViewDelegateFlowLayout,XHWaterfallFlowLayoutDelegate,YBImageBrowserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *meiziArray;
 @property (nonatomic, assign) NSInteger page;
@@ -88,7 +88,7 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     //[cell setimageurl:((XRImage *)self.picImageArr[indexPath.row]).imageUrl];
     // 注：非常关键的一句，由于cell的复用，imageView的frame可能和cell对不上，需要重新设置。
     cell.imageView.frame = cell.bounds;
-    cell.backgroundColor = [UIColor orangeColor];
+    //cell.backgroundColor = [UIColor orangeColor];
     return cell;
    
 }
@@ -239,29 +239,40 @@ static NSString * const reuseIdentifier = @"MeiziCell";
 
 #pragma mark 方式二、使用代理配置数据源
 
+//YBImageBrowserDataSource 代理实现赋值数据
+- (NSInteger)numberInYBImageBrowser:(YBImageBrowser *)imageBrowser {
+    return self.meiziArray.count;
+}
 - (void)B_showWithTouchIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *browserDataArr = [NSMutableArray array];
+    [self.picImageArr enumerateObjectsUsingBlock:^(XRImage *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        
+        YBImageBrowseCellData *data0 = [YBImageBrowseCellData new];
+        data0.url = obj.imageUrl;
+        data0.sourceObject = [self sourceObjAtIdx:idx];
+        [browserDataArr addObject:data0];
+        
+    }];
     
     //创建图片浏览器（注意：更多功能请看 YBImageBrowser.h 文件或者 github readme）
     YBImageBrowser *browser = [YBImageBrowser new];
-    browser.dataSource = self;
+    browser.dataSourceArray = browserDataArr;
     browser.currentIndex = indexPath.row;
     
     //展示
     [browser show];
 }
-
 //YBImageBrowserDataSource 代理实现赋值数据
-- (NSInteger)numberInYBImageBrowser:(YBImageBrowser *)imageBrowser {
+- (NSUInteger)yb_numberOfCellForImageBrowserView:(YBImageBrowserView *)imageBrowserView{
     return self.meiziArray.count;
 }
-- (YBImageBrowserModel *)yBImageBrowser:(YBImageBrowser *)imageBrowser modelForCellAtIndex:(NSInteger)index {
-    YBImageBrowserModel *model = [YBImageBrowserModel new];
-    model.url = ((XRImage *)self.picImageArr[index]).imageUrl;
-    model.sourceImageView = [self getImageViewOfCellByIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    return model;
-}
-- (UIImageView *)imageViewOfTouchForImageBrowser:(YBImageBrowser *)imageBrowser {
-    return [self getImageViewOfCellByIndexPath:currentTouchIndexPath];
+
+// tool
+- (id )sourceObjAtIdx:(NSInteger)idx {
+    MeiziCell *cell = (MeiziCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+    if (!cell) return nil;
+    return cell.imageView;
 }
 
 // tool
