@@ -11,51 +11,62 @@
 #import "MeiziCell.h"
 #import "XHWaterfallFlowLayout.h"
 #import "XRImage.h"
+#import <Bugly/Bugly.h>
+#import <YYModel/YYModel.h>
 
-
-@interface ViewController ()<UICollectionViewDelegateFlowLayout,XHWaterfallFlowLayoutDelegate,YBImageBrowserDelegate>
+@interface ViewController ()<XHWaterfallFlowLayoutDelegate,YBImageBrowserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *meiziArray;
 @property (nonatomic, assign) NSInteger page;
 
 @property (nonatomic, strong) XHWaterfallFlowLayout * flowLayout;
 @property (nonatomic, strong) NSMutableArray *picImageArr;
+@property (nonatomic, strong) GankMeizi *gank;
+
+@property (readwrite, nonatomic, strong) NSLock *lock;
 
 
 @end
 
 @implementation ViewController
-{
-    NSIndexPath *currentTouchIndexPath;
-}
+
 static NSString * const reuseIdentifier = @"MeiziCell";
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         _page = 1;
         
+        
     }
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    BuglyConfig * config = [[BuglyConfig alloc] init];
+    // 设置自定义日志上报的级别，默认不上报自定义日志
+    config.reportLogLevel = BuglyLogLevelInfo;
+    
+    [Bugly startWithAppId:@"0ef0c55821" config:config];
+    BLYLogInfo(@"执行完成");
     _flowLayout = [[XHWaterfallFlowLayout alloc] init];
     _flowLayout.columnCount = 3;
     _flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
     _flowLayout.minimumInteritemSpacing = 5;
     _flowLayout.minimumLineSpacing = 5;
     _flowLayout.sDelegate = self;
+    self.collectionView.collectionViewLayout = self.flowLayout ;
     
     
     [self.collectionView registerClass:[MeiziCell class] forCellWithReuseIdentifier:reuseIdentifier];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    
+    
     [self.collectionView.mj_header beginRefreshing];
     [self.collectionView.mj_footer endRefreshing];
-    
-    
-    self.collectionView.collectionViewLayout = self.flowLayout ;
-    
 
     
 }
@@ -95,89 +106,98 @@ static NSString * const reuseIdentifier = @"MeiziCell";
 
 // UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    currentTouchIndexPath = indexPath;
+    
     [self B_showWithTouchIndexPath:indexPath];
     
 }
 
 -(void)getMeiziArray:(NSInteger) page{
-    
+    MJWeakSelf
     NSString * meiziurl = [NSString stringWithFormat:@"https://gank.io/api/data/福利/20/%@",@(page)];
     meiziurl = [meiziurl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    __block GankMeizi *gank;
+    
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    
     [manager GET:meiziurl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //NSLog(@"%@",responseObject);
-        gank = [GankMeizi mj_objectWithKeyValues:responseObject];
-        
-        if (gank.results.count ){
+        NSLog(@"%@",responseObject);
+        if (responseObject != nil) {
+          weakSelf.gank = [GankMeizi yy_modelWithJSON:responseObject];
+          NSLog(@"%@",weakSelf.gank);
+
+
+        if (weakSelf.gank != nil&&weakSelf.gank.results.count !=0 && weakSelf.meiziArray != nil && weakSelf.picImageArr != nil){
             //NSLog(@"%@",((Result*)gank.results[0]).url);
             if (page == 1) {
-                [self.meiziArray removeAllObjects];
-                [self.picImageArr removeAllObjects];
+                if (weakSelf.meiziArray != nil) {
+                    [weakSelf.meiziArray removeAllObjects];
+                }
+                if (weakSelf.picImageArr != nil) {
+                    [weakSelf.picImageArr removeAllObjects];}
             }
-            
-            [self.meiziArray addObjectsFromArray:gank.results];//= [NSMutableArray arrayWithArray:gank.results];
-            
-            
-            for (int i = ((int)page*20)-20 ; i< self.meiziArray.count ; i++) {
-                
-                
+
+            [weakSelf.meiziArray addObjectsFromArray:weakSelf.gank.results];//= [NSMutableArray arrayWithArray:gank.results];
+
+
+            for (int i = ((int)page*20)-20 ; i< weakSelf.meiziArray.count ; i++) {
+
+
                 //[SDWebImageManager sharedManager]ima
                 XRImage * xrimage = [[XRImage alloc]init];
-                
-                if ([((Result *)self.meiziArray[i]).url containsString:@"jpg"]||[((Result *)self.meiziArray[i]).url containsString:@"jpeg"]) {
-                    xrimage.imageUrl = [NSURL URLWithString:((Result *)self.meiziArray[i]).url];
+
+                if ([((Result *)weakSelf.meiziArray[i]).url containsString:@"jpg"]||[((Result *)weakSelf.meiziArray[i]).url containsString:@"jpeg"]) {
+                    xrimage.imageUrl = [NSURL URLWithString:((Result *)weakSelf.meiziArray[i]).url];
                 } else {
                     xrimage.imageUrl = [NSURL URLWithString:@"http://wx4.sinaimg.cn/bmiddle/d8203382ly1fslhcbkj1jj21281w0dwq.jpg"];
                 }
-                
-                
+
+
                 //[[SDWebImageManager sharedManager].imageDownloader setValue: nil forHTTPHeaderField:@"Accept"];
                 [[SDWebImageManager sharedManager] loadImageWithURL:xrimage.imageUrl options:SDWebImageAllowInvalidSSLCertificates progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-                    
+
                 } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
                     NSLog(@"errrrrror%@",error);
-                    
-                    
+
+
                     if(image){
-                        
+
                         xrimage.imageW = image.size.width;
                         xrimage.imageH = image.size.height;
                         xrimage.image = image;
                         //NSLog(@"%@",xrimage.imageUrl);
-                        
-                        [self.picImageArr addObject:xrimage];
+
+                        [weakSelf.picImageArr addObject:xrimage];
                         //NSLog(@"图片的数量%ld",self.picImageArr.count);
                         //[self.collectionView reloadData];
                     }
-                    if(self.picImageArr.count  == self.meiziArray.count){
-                        
-                        [self.collectionView reloadData];
-                        [self.collectionView.mj_header endRefreshing];
-                        [self.collectionView.mj_footer endRefreshing];
+                    if(weakSelf.picImageArr.count  == weakSelf.meiziArray.count){
+
+                        [weakSelf.collectionView reloadData];
+                        [weakSelf.collectionView.mj_header endRefreshing];
+                        [weakSelf.collectionView.mj_footer endRefreshing];
                         return ;
                     }
                 }];
-                    
-                
+
+
             }
         }else {
-            
-            [self.collectionView.mj_header endRefreshing];
-            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+
+            [weakSelf.collectionView.mj_header endRefreshing];
+            [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
         }
-        
-        
+        }
+
         // 请求成功
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         // 请求失败
-        [self.collectionView.mj_header endRefreshing];
-        
+        //[weakSelf.collectionView.mj_header endRefreshing];
+
     }];
-    //NSLog(@"%@",gank);
+    
     
     
     
@@ -194,6 +214,7 @@ static NSString * const reuseIdentifier = @"MeiziCell";
 -(void)loadMoreMeizi{
     self.page++;
     [self getMeiziArray:self.page];
+    
     NSLog(@"几页了%ld",(long)self.page);
     
 }
@@ -201,7 +222,7 @@ static NSString * const reuseIdentifier = @"MeiziCell";
 - (NSMutableArray *)meiziArray {
     if (_meiziArray == nil) {
         
-        _meiziArray = [[NSMutableArray alloc] init];
+        _meiziArray = [NSMutableArray array];
     }
     //NSLog(@"妹子的数量%ld",_meiziArray.count);
     return _meiziArray;
@@ -216,7 +237,7 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     }
     if (collectionView.mj_footer == nil) {
         MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreMeizi)];
-        footer.automaticallyRefresh = YES;
+        footer.automaticallyRefresh = NO;
         collectionView.mj_footer = footer;
     }
     return collectionView;
@@ -224,10 +245,19 @@ static NSString * const reuseIdentifier = @"MeiziCell";
 - (NSMutableArray *)picImageArr {
     
     if (!_picImageArr) {
-        _picImageArr = [[NSMutableArray alloc] init];
+        _picImageArr = [NSMutableArray array];
     }
     
     return _picImageArr;
+}
+
+- (GankMeizi *)gank{
+    
+    if (!_gank) {
+        _gank = [[GankMeizi alloc]init];
+    }
+    
+    return _gank;
 }
 
 - (CGFloat)getImageRatioOfWidthAndHeight:(NSIndexPath *)indexPath
@@ -281,6 +311,9 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     if (!cell) return nil;
     return cell.imageView;
 }
-
+- (void)dealloc
+{
+    
+}
 
 @end

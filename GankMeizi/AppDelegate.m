@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import <Bugly/Bugly.h>
+#import <LLDebug.h>
 @interface AppDelegate ()
 
 @end
@@ -16,7 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Bugly startWithAppId:@"0ef0c55821"];
     // Override point for customization after application launch.
+    BuglyConfig * config = [[BuglyConfig alloc] init];
+    // 设置自定义日志上报的级别，默认不上报自定义日志
+    config.reportLogLevel = BuglyLogLevelInfo;
+    
+    [Bugly startWithAppId:@"0ef0c55821" config:config];
+    BLYLogInfo(@"执行完成");
+    //[[LLDebugTool sharedTool] startWorking];
     return YES;
 }
 

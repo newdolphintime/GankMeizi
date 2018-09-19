@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString * source;
 @property (nonatomic, strong) NSString * type;
 @property (nonatomic, strong) NSString * url;
-@property (nonatomic, assign) BOOL used;
+@property (nonatomic, assign) NSString* used;
 @property (nonatomic, strong) NSString * who;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;

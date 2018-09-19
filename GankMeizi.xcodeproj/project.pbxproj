@@ -23,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		439316DBD5B0EB7913363F49 /* Pods-GankMeizi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GankMeizi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi.debug.xcconfig"; sourceTree = "<group>"; };
+		729D6C2F2151517900A6BD51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		72C3BD71214693470027B949 /* GankMeizi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GankMeizi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C3BD74214693470027B949 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		72C3BD75214693470027B949 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -222,11 +223,31 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GankMeizi/Pods-GankMeizi-resources.sh",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Others/FilterView/LabelCell/LLFilterLabelCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Others/FilterView/TextFieldCell/LLFilterTextFieldCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Others/LLSubTitleTableViewCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Sections/Crash/LLCrashCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Sections/Crash/LLCrashContentCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Sections/Log/LLLogCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Sections/Network/LLNetworkCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Sections/Network/LLNetworkImageCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Sections/Sandbox/LLSandboxCell.xib",
+				"${PODS_ROOT}/LLDebugTool/LLDebugTool/UserInterface/Resources/LLDebugTool.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/YBImageBrowser/YBImageBrowser/YBImageBrowser.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLFilterLabelCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLFilterTextFieldCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLSubTitleTableViewCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLCrashCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLCrashContentCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLLogCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLNetworkCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLNetworkImageCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLSandboxCell.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LLDebugTool.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YBImageBrowser.bundle",
 			);
@@ -278,6 +299,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				72C3BD7B214693470027B949 /* Base */,
+				729D6C2F2151517900A6BD51 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -398,6 +420,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -439,6 +462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zv.play.appone.GankMeizi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

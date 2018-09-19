@@ -55,7 +55,7 @@ NSString *const kResultWho = @"who";
 		self.url = dictionary[kResultUrl];
 	}	
 	if(![dictionary[kResultUsed] isKindOfClass:[NSNull class]]){
-		self.used = [dictionary[kResultUsed] boolValue];
+		self.used = dictionary[kResultUsed] ;
 	}
 
 	if(![dictionary[kResultWho] isKindOfClass:[NSNull class]]){
@@ -92,7 +92,9 @@ NSString *const kResultWho = @"who";
 	if(self.url != nil){
 		dictionary[kResultUrl] = self.url;
 	}
-	dictionary[kResultUsed] = @(self.used);
+    if(self.url != nil){
+	dictionary[kResultUsed] = self.used;
+    }
 	if(self.who != nil){
 		dictionary[kResultWho] = self.who;
 	}
@@ -129,7 +131,10 @@ NSString *const kResultWho = @"who";
 	if(self.url != nil){
 		[aCoder encodeObject:self.url forKey:kResultUrl];
 	}
-	[aCoder encodeObject:@(self.used) forKey:kResultUsed];	if(self.who != nil){
+    if(self.used != nil){
+	[aCoder encodeObject:self.used forKey:kResultUsed];
+    }
+    if(self.who != nil){
 		[aCoder encodeObject:self.who forKey:kResultWho];
 	}
 
@@ -148,7 +153,7 @@ NSString *const kResultWho = @"who";
 	self.source = [aDecoder decodeObjectForKey:kResultSource];
 	self.type = [aDecoder decodeObjectForKey:kResultType];
 	self.url = [aDecoder decodeObjectForKey:kResultUrl];
-	self.used = [[aDecoder decodeObjectForKey:kResultUsed] boolValue];
+	self.used = [aDecoder decodeObjectForKey:kResultUsed] ;
 	self.who = [aDecoder decodeObjectForKey:kResultWho];
 	return self;
 
