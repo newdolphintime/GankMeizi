@@ -25,6 +25,7 @@
 
 @property (readwrite, nonatomic, strong) NSLock *lock;
 
+@property (nonatomic, strong)AFHTTPSessionManager *manager;
 
 @end
 
@@ -115,15 +116,18 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     MJWeakSelf
     NSString * meiziurl = [NSString stringWithFormat:@"https://gank.io/api/data/福利/20/%@",@(page)];
     meiziurl = [meiziurl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    AFHTTPSessionManager *manager =[AFHTTPSessionManager manager];
-    
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     
-    [manager GET:meiziurl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    self.manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    
+    [self.manager GET:meiziurl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         // 进度
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
+        NSDictionary *dict = responseObject[@"results"];
+        if (nil ==dict || [NSNull null] == dict ) return;
+        
         if (responseObject != nil) {
           weakSelf.gank = [GankMeizi yy_modelWithJSON:responseObject];
           NSLog(@"%@",weakSelf.gank);
@@ -259,6 +263,13 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     
     return _gank;
 }
+- (AFHTTPSessionManager *) manager{
+    if (!_manager) {
+        _manager = [AFHTTPSessionManager manager];
+    }
+    
+    return _manager;
+}
 
 - (CGFloat)getImageRatioOfWidthAndHeight:(NSIndexPath *)indexPath
 {   //NSLog(@"%@",self.picImageArr[indexPath.row]);
@@ -311,9 +322,9 @@ static NSString * const reuseIdentifier = @"MeiziCell";
     if (!cell) return nil;
     return cell.imageView;
 }
-- (void)dealloc
-{
-    
+- (void)viewDidDisappear:(BOOL)animated{
+    if (self.manager !=nil) {
+         [self.manager.operationQueue  cancelAllOperations];
+    }
 }
-
 @end

@@ -25,7 +25,7 @@
     
     [Bugly startWithAppId:@"0ef0c55821" config:config];
     BLYLogInfo(@"执行完成");
-    //[[LLDebugTool sharedTool] startWorking];
+    [[LLDebugTool sharedTool] startWorking];
     return YES;
 }
 
